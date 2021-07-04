@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^5.0.0 # 增加provider依赖
+  flutter_bloc: ^4.0.0 # todo 最新版本7.0.1 使用方式和基类有调整
+ # 增加provider依赖
 
 
   # The following adds the Cupertino Icons font to your application.
