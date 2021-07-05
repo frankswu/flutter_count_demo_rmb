@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^4.0.0 # todo 最新版本7.0.1 使用方式和基类有调整
+  flutter_bloc: ^7.0.1 # todo 最新版本7.0.1 使用方式和基类有调整
  # 增加provider依赖
 
 

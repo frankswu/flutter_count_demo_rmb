@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/**
+ *  从继承 BlocDelegate 到继承 BlocObserver
+ *  Custom [BlocObserver] which observes all bloc and cubit instances.
+ */
 
-class MyBlocDelegate extends BlocDelegate {
+class MyBlocObserver extends BlocObserver {
   @override
-  void onEvent(Bloc bloc, Object event) {
+  void onEvent(Bloc bloc, Object? event) {
     print(event);
     super.onEvent(bloc, event);
   }
@@ -17,14 +21,17 @@ class MyBlocDelegate extends BlocDelegate {
   }
 
   @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     print(error);
     super.onError(bloc, error, stackTrace);
   }
 }
 
 void main() {
-  BlocSupervisor.delegate = MyBlocDelegate();
+  // from 4.0 to 7.0 change
+  //BlocSupervisor.delegate = MyBlocDelegate();
+  Bloc.observer = MyBlocObserver();
+
   runApp(FlutterBlocApp(
     title: "Flutter Bloc Demo",
   ));
@@ -38,13 +45,16 @@ class FlutterBlocApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeData>(builder: (_, theme) {
+      create: (_) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeData>(builder: (_, theme) {
         return MaterialApp(
           title: title,
           theme: theme,
           home: BlocProvider(
-              create: (_) => CountBloc(), child: HomePage(title: title)),
+              create: (_) => CountCubit(), 
+              child: BlocBuilder<CountCubit, int>(builder: (_, theme) {
+                return HomePage(title: title);
+              })),
         );
       }),
     );
@@ -61,7 +71,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var floatingActionButton1 = FloatingActionButton(
       // Attach the `callback` to the `onPressed` attribute
-      onPressed: () => context.bloc<CountBloc>().add(CountEvent.increment),
+      onPressed: () => context.read<CountCubit>().increment(),
       tooltip: 'Increment Count',
       child: Icon(Icons.add),
     );
@@ -70,7 +80,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: BlocBuilder<CountBloc, int>(builder: (_, count) {
+      body: BlocBuilder<CountCubit, int>(builder: (_, count) {
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,14 +108,14 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
               onPressed: () =>
-                  context.bloc<CountBloc>().add(CountEvent.decrement),
+                  context.read<CountCubit>().decrement(),
               child: Icon(Icons.remove),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
-              onPressed: () => context.bloc<ThemeBloc>().add(ThemeEvent.toggle),
+              onPressed: () => context.read<ThemeCubit>().toggleTheme(),
               child: Icon(Icons.brightness_6),
             ),
           ),
@@ -115,40 +125,44 @@ class HomePage extends StatelessWidget {
   }
 }
 
-enum CountEvent { increment, decrement }
 
-class CountBloc extends Bloc<CountEvent, int> {
-  @override
-  int get initialState => 0;
 
-  @override
-  Stream<int> mapEventToState(CountEvent event) async* {
-    switch (event) {
-      case CountEvent.increment:
-        yield state + 1;
-        break;
-      case CountEvent.decrement:
-        yield state - 1;
-        break;
-      default:
-        throw Exception("no");
-    }
-  }
+class CountCubit extends Cubit<int> {
+
+  CountCubit() : super(0);
+
+  void increment() => emit(state + 1);
+
+  void decrement() => emit(state - 1);
+
 }
 
-enum ThemeEvent { toggle }
 
-class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
-  @override
-  ThemeData get initialState => ThemeData.light();
+/**
+ * /// A simple [Cubit] which manages the [ThemeData] as its state.
+ */
+class ThemeCubit extends Cubit<ThemeData> {
 
-  @override
-  Stream<ThemeData> mapEventToState(event) async* {
-    switch (event) {
-      case ThemeEvent.toggle:
-        yield state == ThemeData.dark() ? ThemeData.light() : ThemeData.dark();
-        break;
-    }
+ThemeCubit() : super(_lightTheme);
+
+static final _lightTheme = ThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      foregroundColor: Colors.white,
+    ),
+    brightness: Brightness.light,
+  );
+
+  static final _darkTheme = ThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      foregroundColor: Colors.black,
+    ),
+    brightness: Brightness.dark,
+  );
+
+/// Toggles the current brightness between light and dark.
+  void toggleTheme() {
+    emit(state.brightness == Brightness.dark ? _lightTheme : _darkTheme);
   }
+
 }
 
