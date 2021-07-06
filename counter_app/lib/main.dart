@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
+// 网络层dio依赖
+import 'package:dio/dio.dart';
 
 void main() {
+
   var flutterProviderApp = FlutterProviderApp(
     title: "Flutter Provider Demo",
   );
+  var dateTime = DateTime.now();
+  print("startTime$dateTime");
+//    print("endTime=${DateTime.now().microsecond-dateTime.microsecond}");
+
+  getHttp();
 
   runApp(
     MultiProvider(
@@ -20,6 +28,22 @@ void main() {
       child: flutterProviderApp,
     ),
   );
+    print("endTime=${DateTime.now().microsecond-dateTime.microsecond}");
+
+}
+
+void getHttp() async {
+  try {
+    // web device debug 有跨域支持问题
+    var startTime = DateTime.now();
+    print("startTime.getHttp=$startTime");
+    String path = 'https://www.baidu.com';
+    var response = await Dio().get(path);
+    //print(response);
+    print("endTime.getHttp=${DateTime.now().microsecond-startTime.microsecond}");
+  } catch (e) {
+    print(e);
+  }
 }
 
 class FlutterProviderApp extends StatelessWidget {
@@ -115,6 +139,10 @@ class CountModel extends ChangeNotifier {
 
   void incrementCount() {
     _count++;
+    var dateTime = DateTime.now();
+    print("startTime$dateTime");
+    getHttp();
+    print("endTime=${DateTime.now().microsecond-dateTime.microsecond}");
     notifyListeners();
   }
 
