@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// TODO https://www.didierboelens.com/2018/08/reactive-programming-streams-bloc/
 
 class MyBlocDelegate extends BlocDelegate {
   @override
