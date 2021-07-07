@@ -35,12 +35,12 @@ void main() {
 void getHttp() async {
   try {
     // web device debug 有跨域支持问题
-    var startTime = DateTime.now();
-    print("startTime.getHttp=$startTime");
+    var startTime1 = DateTime.now();
+    print("startTime.getHttp=$startTime1");
     String path = 'https://www.baidu.com';
     var response = await Dio().get(path);
     //print(response);
-    print("endTime.getHttp=${DateTime.now().microsecond-startTime.microsecond}");
+    print("endTime.getHttp=${DateTime.now().microsecond-startTime1.microsecond}");
   } catch (e) {
     print(e);
   }
@@ -139,10 +139,10 @@ class CountModel extends ChangeNotifier {
 
   void incrementCount() {
     _count++;
-    var dateTime = DateTime.now();
-    print("startTime$dateTime");
+    var startTime = DateTime.now();
+    print("increment.startTime$startTime");
     getHttp();
-    print("endTime=${DateTime.now().microsecond-dateTime.microsecond}");
+    print("increment.endTime=${DateTime.now().microsecond-startTime.microsecond}");
     notifyListeners();
   }
 
