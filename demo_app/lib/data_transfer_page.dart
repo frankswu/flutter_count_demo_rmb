@@ -116,6 +116,7 @@ class DataTransferIsolateController extends ChangeNotifier {
   void listen() {
     _incomingReceivePort.listen((dynamic message) {
       if (message is SendPort) {
+        print("listen  sendPort:$message");
         _outgoingSendPort = message;
       }
 
@@ -123,9 +124,11 @@ class DataTransferIsolateController extends ChangeNotifier {
         currentProgress.insert(
             0, '$message% - ${_timer.elapsedMilliseconds / 1000} seconds');
         progressPercent = message / 100;
+        print("listen  progressPercent:$progressPercent");
       }
 
       if (message is String && message == 'done') {
+        print("listen  done:");
         runningTest = 0;
         _timer.stop();
       }
@@ -239,14 +242,16 @@ Future<void> _secondIsolateEntryPoint(SendPort sendPort) async {
   receivePort.listen(
     (dynamic message) async {
       if (message is String && message == 'start') {
+        print("generateAndSum isolate 2 createNums:length:$length");
         await generateAndSum(sendPort, createNums(), length);
-
         sendPort.send('done');
       } else if (message is TransferableTypedData) {
+        print("generateAndSum TransferableTypedData:length:$length");
         await generateAndSum(
             sendPort, message.materialize().asInt32List(), length);
         length++;
       } else if (message is List<int>) {
+        print("generateAndSum int:length:$length");
         await generateAndSum(sendPort, message, length);
         length++;
       }

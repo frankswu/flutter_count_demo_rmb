@@ -87,6 +87,7 @@ class _PerformancePageState extends State<PerformancePage> {
   void handleComputeOnMain(BuildContext context) {
     var future = computeOnMainIsolate()
       ..then((_) {
+      print("computeOnMainIsolate done");
         var snackBar = const SnackBar(
           content: Text('Main Isolate Done!'),
         );
@@ -101,6 +102,7 @@ class _PerformancePageState extends State<PerformancePage> {
   void handleComputeOnSecondary(BuildContext context) {
     var future = computeOnSecondaryIsolate()
       ..then((_) {
+      print("computeOnSecondaryIsolate done");
         var snackBar = const SnackBar(
           content: Text('Secondary Isolate Done!'),
         );
@@ -117,12 +119,20 @@ class _PerformancePageState extends State<PerformancePage> {
     // least once before the computation (which, since it's run on the main
     // isolate, will lock up the app) begins executing.
     await Future<void>.delayed(const Duration(milliseconds: 100));
-    fib(45);
+    int start = DateTime.now().microsecond;
+    print("computeOnMainIsolate start");
+    await Future(()=>fib(40));
+    //fib(40);
+    print("computeOnMainIsolate end ${DateTime.now().microsecond- start}");
+
   }
 
   Future<void> computeOnSecondaryIsolate() async {
     // Compute the Fibonacci series on a secondary isolate.
-    await compute(fib, 45);
+    int start2 = DateTime.now().microsecond;
+    print("computeOnSecondaryIsolate start");
+    await compute(fib, 40);
+    print("computeOnSecondaryIsolate end ${DateTime.now().microsecond-start2}");
   }
 }
 
