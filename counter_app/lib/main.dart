@@ -51,7 +51,7 @@ class FlutterBlocApp extends StatelessWidget {
           title: title,
           theme: theme,
           home: BlocProvider(
-              create: (_) => CountCubit(), 
+              create: (_) => CountCubit(),
               child: BlocBuilder<CountCubit, int>(builder: (_, theme) {
                 return HomePage(title: title);
               })),
@@ -107,8 +107,7 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: FloatingActionButton(
-              onPressed: () =>
-                  context.read<CountCubit>().decrement(),
+              onPressed: () => context.read<CountCubit>().decrement(),
               child: Icon(Icons.remove),
             ),
           ),
@@ -125,27 +124,21 @@ class HomePage extends StatelessWidget {
   }
 }
 
-
-
 class CountCubit extends Cubit<int> {
-
   CountCubit() : super(0);
 
   void increment() => emit(state + 1);
 
   void decrement() => emit(state - 1);
-
 }
-
 
 /**
  * /// A simple [Cubit] which manages the [ThemeData] as its state.
  */
 class ThemeCubit extends Cubit<ThemeData> {
+  ThemeCubit() : super(_lightTheme);
 
-ThemeCubit() : super(_lightTheme);
-
-static final _lightTheme = ThemeData(
+  static final _lightTheme = ThemeData(
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
     ),
@@ -159,10 +152,8 @@ static final _lightTheme = ThemeData(
     brightness: Brightness.dark,
   );
 
-/// Toggles the current brightness between light and dark.
+  /// Toggles the current brightness between light and dark.
   void toggleTheme() {
     emit(state.brightness == Brightness.dark ? _lightTheme : _darkTheme);
   }
-
 }
-
