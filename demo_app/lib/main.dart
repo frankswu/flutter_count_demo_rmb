@@ -22,7 +22,9 @@ import 'bottom_navigation_demo.dart';
 void main() {
   runApp(
     const MaterialApp(
-      home: HomePage(),
+      home: BottomNavigationDemo(
+        restorationId: 'Bottom Navigation',
+      ),
     ),
   );
 }
@@ -31,43 +33,44 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    const tabWidgets = [
+      PerformancePage(),
+      InfiniteProcessPageStarter(),
+      DataTransferPageStarter(),
+      BottomNavigationDemo(
+        restorationId: 'Bottom Navigation',
+      ),
+    ];
+    const tabsIconText = [
+      Tab(
+        icon: Icon(Icons.flash_on),
+        text: 'Performance',
+      ),
+      Tab(
+        icon: Icon(Icons.sync),
+        text: 'Infinite Process',
+      ),
+      Tab(
+        icon: Icon(Icons.storage),
+        text: 'Data Transfer',
+      ),
+      Tab(
+        icon: Icon(Icons.label_important),
+        text: 'Bottom Navigation',
+      )
+    ];
     return MaterialApp(
       home: DefaultTabController(
-        length: 4,
+        length: tabWidgets.length,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(Icons.flash_on),
-                  text: 'Performance',
-                ),
-                Tab(
-                  icon: Icon(Icons.sync),
-                  text: 'Infinite Process',
-                ),
-                Tab(
-                  icon: Icon(Icons.storage),
-                  text: 'Data Transfer',
-                ),
-                Tab(
-                  icon: Icon(Icons.label_important),
-                  text: 'Bottom Navigation',
-                )
-              ],
+              tabs: tabsIconText,
             ),
             title: const Text('Isolate Example'),
           ),
           body: const TabBarView(
-            children: [
-              PerformancePage(),
-              InfiniteProcessPageStarter(),
-              DataTransferPageStarter(),
-              BottomNavigationDemo(
-                type: BottomNavigationDemoType.withoutLabels,
-                restorationId: 'Bottom Navigation',
-              ),
-            ],
+            children: tabWidgets,
           ),
         ),
       ),

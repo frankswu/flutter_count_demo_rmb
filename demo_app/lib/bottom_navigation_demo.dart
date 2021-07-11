@@ -4,6 +4,10 @@
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+
+import 'data_transfer_page.dart';
+import 'infinite_process_page.dart';
+import 'performance_page.dart';
 // import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 // import 'package:gallery/demos/material/material_demo_types.dart';
 
@@ -16,11 +20,11 @@ class BottomNavigationDemo extends StatefulWidget {
   const BottomNavigationDemo({
     Key? key,
     required this.restorationId,
-    required this.type,
+    BottomNavigationDemoType? type,
   }) : super(key: key);
 
   final String restorationId;
-  final BottomNavigationDemoType type;
+  final BottomNavigationDemoType type = BottomNavigationDemoType.withoutLabels;
 
   @override
   _BottomNavigationDemoState createState() => _BottomNavigationDemoState();
@@ -45,13 +49,13 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
   }
 
   String _title(BuildContext context) {
-    switch (widget.type) {
-      case BottomNavigationDemoType.withLabels:
-        return "常驻标签页";
-      case BottomNavigationDemoType.withoutLabels:
-        return "已选择标签";
-    }
-    return '';
+    // switch (widget.type) {
+    //   case BottomNavigationDemoType.withLabels:
+    //     return "常驻标签页";
+    //   case BottomNavigationDemoType.withoutLabels:
+    //     return "已选择标签";
+    // }
+    return "已选择标签";
   }
 
   @override
@@ -61,6 +65,10 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
 
     var bottomNavigationBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
+        icon: const Icon(Icons.home),
+        label: "首页",
+      ),
+      BottomNavigationBarItem(
         icon: const Icon(Icons.add_comment),
         label: "注释",
       ),
@@ -68,27 +76,33 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
         icon: const Icon(Icons.calendar_today),
         label: "日历",
       ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.account_circle),
-        label: "帐号",
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.alarm_on),
-        label: "闹钟",
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.camera_enhance),
-        label: "相机",
-      ),
+      // BottomNavigationBarItem(
+      //   icon: const Icon(Icons.account_circle),
+      //   label: "帐号",
+      // ),
+      // BottomNavigationBarItem(
+      //   icon: const Icon(Icons.alarm_on),
+      //   label: "闹钟",
+      // ),
+      // BottomNavigationBarItem(
+      //   icon: const Icon(Icons.camera_enhance),
+      //   label: "相机",
+      // ),
     ];
 
-    if (widget.type == BottomNavigationDemoType.withLabels) {
-      bottomNavigationBarItems = bottomNavigationBarItems.sublist(
-          0, bottomNavigationBarItems.length - 2);
-      _currentIndex.value = _currentIndex.value
-          .clamp(0, bottomNavigationBarItems.length - 1)
-          .toInt();
-    }
+    const tabWidgets = [
+      PerformancePage(),
+      InfiniteProcessPageStarter(),
+      DataTransferPageStarter(),
+    ];
+
+    // if (widget.type == BottomNavigationDemoType.withLabels) {
+    //   bottomNavigationBarItems = bottomNavigationBarItems.sublist(
+    //       0, bottomNavigationBarItems.length - 2);
+    //   _currentIndex.value = _currentIndex.value
+    //       .clamp(0, bottomNavigationBarItems.length - 1)
+    //       .toInt();
+    // }
 
     return Scaffold(
       appBar: AppBar(
@@ -104,11 +118,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
               child: child,
             );
           },
-          child: _NavigationDestinationView(
-            // Adding [UniqueKey] to make sure the widget rebuilds when transitioning.
-            key: UniqueKey(),
-            item: bottomNavigationBarItems[_currentIndex.value],
-          ),
+          child: tabWidgets[_currentIndex.value],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -133,7 +143,8 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
 }
 
 class _NavigationDestinationView extends StatelessWidget {
-  const _NavigationDestinationView({Key? key, required this.item}) : super(key: key);
+  const _NavigationDestinationView({Key? key, required this.item})
+      : super(key: key);
 
   final BottomNavigationBarItem item;
 
@@ -149,7 +160,6 @@ class _NavigationDestinationView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   'assets/demos/bottom_navigation_background.png',
-                  package: 'flutter_gallery_assets',
                 ),
               ),
             ),
