@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'data_transfer_page.dart';
 import 'infinite_process_page.dart';
 import 'performance_page.dart';
+import 'bottom_navigation_demo.dart';
 
 void main() {
   runApp(
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
@@ -49,6 +50,10 @@ class HomePage extends StatelessWidget {
                   icon: Icon(Icons.storage),
                   text: 'Data Transfer',
                 ),
+                Tab(
+                  icon: Icon(Icons.label_important),
+                  text: 'Bottom Navigation',
+                )
               ],
             ),
             title: const Text('Isolate Example'),
@@ -58,6 +63,10 @@ class HomePage extends StatelessWidget {
               PerformancePage(),
               InfiniteProcessPageStarter(),
               DataTransferPageStarter(),
+              BottomNavigationDemo(
+                type: BottomNavigationDemoType.withoutLabels,
+                restorationId: 'Bottom Navigation',
+              ),
             ],
           ),
         ),

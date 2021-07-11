@@ -7,14 +7,20 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 // import 'package:gallery/demos/material/material_demo_types.dart';
 
+enum BottomNavigationDemoType {
+  withLabels,
+  withoutLabels,
+}
+
 class BottomNavigationDemo extends StatefulWidget {
   const BottomNavigationDemo({
     Key? key,
     required this.restorationId,
+    required this.type,
   }) : super(key: key);
 
   final String restorationId;
-  //final BottomNavigationDemoType type;
+  final BottomNavigationDemoType type;
 
   @override
   _BottomNavigationDemoState createState() => _BottomNavigationDemoState();
@@ -29,7 +35,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
-    // registerForRestoration(_currentIndex, 'bottom_navigation_tab_index');
+    registerForRestoration(_currentIndex, 'bottom_navigation_tab_index');
   }
 
   @override
@@ -39,16 +45,12 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
   }
 
   String _title(BuildContext context) {
-    // print(widget.type);
-
-    // switch (widget.type) {
-    //   case BottomNavigationDemoType.withLabels:
-    //     return GalleryLocalizations.of(context)
-    //         .demoBottomNavigationPersistentLabels;
-    //   case BottomNavigationDemoType.withoutLabels:
-    //     return GalleryLocalizations.of(context)
-    //         .demoBottomNavigationSelectedLabel;
-    // }
+    switch (widget.type) {
+      case BottomNavigationDemoType.withLabels:
+        return "常驻标签页";
+      case BottomNavigationDemoType.withoutLabels:
+        return "已选择标签";
+    }
     return '';
   }
 
@@ -60,33 +62,33 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
     var bottomNavigationBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: const Icon(Icons.add_comment),
-        label: "CommentsTab",
+        label: "注释",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.calendar_today),
-        label: "CalendarTab",
+        label: "日历",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.account_circle),
-        label: "AccountTab",
+        label: "帐号",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.alarm_on),
-        label: "AlarmTab",
+        label: "闹钟",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.camera_enhance),
-        label: "CameraTab",
+        label: "相机",
       ),
     ];
 
-    // if (widget.type == BottomNavigationDemoType.withLabels) {
-    //   bottomNavigationBarItems = bottomNavigationBarItems.sublist(
-    //       0, bottomNavigationBarItems.length - 2);
-    //   _currentIndex.value = _currentIndex.value
-    //       .clamp(0, bottomNavigationBarItems.length - 1)
-    //       .toInt();
-    // }
+    if (widget.type == BottomNavigationDemoType.withLabels) {
+      bottomNavigationBarItems = bottomNavigationBarItems.sublist(
+          0, bottomNavigationBarItems.length - 2);
+      _currentIndex.value = _currentIndex.value
+          .clamp(0, bottomNavigationBarItems.length - 1)
+          .toInt();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -94,16 +96,29 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
         title: Text(_title(context)),
       ),
       body: Center(
-        child: Text('bottomNavigationBarItems.elementAt(_selectedIndex).label'),
+        child: PageTransitionSwitcher(
+          transitionBuilder: (child, animation, secondaryAnimation) {
+            return FadeThroughTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              child: child,
+            );
+          },
+          child: _NavigationDestinationView(
+            // Adding [UniqueKey] to make sure the widget rebuilds when transitioning.
+            key: UniqueKey(),
+            item: bottomNavigationBarItems[_currentIndex.value],
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // showUnselectedLabels:
-        //     widget.type == BottomNavigationDemoType.withLabels,
+        showUnselectedLabels:
+            widget.type == BottomNavigationDemoType.withLabels,
         items: bottomNavigationBarItems,
         currentIndex: _currentIndex.value,
         type: BottomNavigationBarType.fixed,
-        // selectedFontSize: textTheme.caption.fontSize,
-        // unselectedFontSize: textTheme.caption.fontSize,
+        selectedFontSize: textTheme.caption!.fontSize!,
+        unselectedFontSize: textTheme.caption!.fontSize!,
         onTap: (index) {
           setState(() {
             _currentIndex.value = index;
@@ -118,8 +133,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
 }
 
 class _NavigationDestinationView extends StatelessWidget {
-  const _NavigationDestinationView({Key? key, required this.item})
-      : super(key: key);
+  const _NavigationDestinationView({Key? key, required this.item}) : super(key: key);
 
   final BottomNavigationBarItem item;
 
@@ -148,7 +162,7 @@ class _NavigationDestinationView extends StatelessWidget {
               size: 80,
             ),
             child: Semantics(
-              label: "Test",
+              label: "“${item.label}”标签页的占位符",
               child: item.icon,
             ),
           ),
