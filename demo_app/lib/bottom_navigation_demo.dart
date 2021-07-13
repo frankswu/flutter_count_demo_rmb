@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'data_transfer_page.dart';
 import 'infinite_process_page.dart';
+import 'main.dart';
 import 'performance_page.dart';
 // import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 // import 'package:gallery/demos/material/material_demo_types.dart';
@@ -66,15 +67,19 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
     var bottomNavigationBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: const Icon(Icons.home),
-        label: "首页",
+        label: "Isolate Demo",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.add_comment),
-        label: "注释",
+        label: "Infinite Process",
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.calendar_today),
-        label: "日历",
+        label: "Data Transfer",
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.account_circle),
+        label: "Other Demo",
       ),
       // BottomNavigationBarItem(
       //   icon: const Icon(Icons.account_circle),
@@ -94,6 +99,7 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
       PerformancePage(),
       InfiniteProcessPageStarter(),
       DataTransferPageStarter(),
+      HomePage(),
     ];
 
     // if (widget.type == BottomNavigationDemoType.withLabels) {

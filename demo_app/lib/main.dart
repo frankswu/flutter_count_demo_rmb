@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:demo_app/tab_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'data_transfer_page.dart';
@@ -34,44 +35,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tabWidgets = [
-      PerformancePage(),
-      InfiniteProcessPageStarter(),
-      DataTransferPageStarter(),
-      BottomNavigationDemo(
-        restorationId: 'Bottom Navigation',
-      ),
+      BasicsPage(),
+      ConvertedSimplePage(),
+      ConvertedComplexPage(),
+      ConvertedListPage(),
+      SerializableSimplePage(),
+      SerializableComplexPage(),
+      SerializableListPage(),
+      BuiltSimplePage(),
+      BuiltComplexPage(),
+      BuiltListPage(),
     ];
     const tabsIconText = [
-      Tab(
-        icon: Icon(Icons.flash_on),
-        text: 'Performance',
-      ),
-      Tab(
-        icon: Icon(Icons.sync),
-        text: 'Infinite Process',
-      ),
-      Tab(
-        icon: Icon(Icons.storage),
-        text: 'Data Transfer',
-      ),
-      Tab(
-        icon: Icon(Icons.label_important),
-        text: 'Bottom Navigation',
-      )
+      Tab(text: 'Basics'),
+      Tab(text: 'Conv. Simple'),
+      Tab(text: 'Conv. Complex'),
+      Tab(text: 'Conv. List'),
+      Tab(text: 'Ser. Simple'),
+      Tab(text: 'Ser. Complex'),
+      Tab(text: 'Ser. List'),
+      Tab(text: 'Built Simple'),
+      Tab(text: 'Built Complex'),
+      Tab(text: 'Built List'),
     ];
-    return MaterialApp(
-      home: DefaultTabController(
-        length: tabWidgets.length,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
-              tabs: tabsIconText,
-            ),
-            title: const Text('Isolate Example'),
+    return DefaultTabController(
+      length: tabWidgets.length,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: tabsIconText,
           ),
-          body: const TabBarView(
-            children: tabWidgets,
-          ),
+        ),
+        body: const TabBarView(
+          children: tabWidgets,
         ),
       ),
     );
