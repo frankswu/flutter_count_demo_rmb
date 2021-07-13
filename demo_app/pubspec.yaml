@@ -38,6 +38,9 @@ dependencies:
   built_collection: ^5.0.0
   built_value: ^8.0.0
 
+  # animation
+  cupertino_icons: ^1.0.2
+
 
 dev_dependencies:
   flutter_test:
@@ -94,5 +97,7 @@ flutter:
 
   assets:
     - assets/demos/
+    - assets/
+
 
     

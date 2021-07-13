@@ -3,7 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:animations/animations.dart';
+import 'package:demo_app/src/json_demo.dart';
+import 'package:demo_app/src/animation_samples.dart';
 import 'package:flutter/material.dart';
+
 
 import 'data_transfer_page.dart';
 import 'infinite_process_page.dart';
@@ -17,8 +20,10 @@ enum BottomNavigationDemoType {
   withoutLabels,
 }
 
-class BottomNavigationDemo extends StatefulWidget {
-  const BottomNavigationDemo({
+
+
+class MainDemoPage extends StatefulWidget {
+  const MainDemoPage({
     Key? key,
     required this.restorationId,
     BottomNavigationDemoType? type,
@@ -28,10 +33,10 @@ class BottomNavigationDemo extends StatefulWidget {
   final BottomNavigationDemoType type = BottomNavigationDemoType.withoutLabels;
 
   @override
-  _BottomNavigationDemoState createState() => _BottomNavigationDemoState();
+  _MainDemoPageState createState() => _MainDemoPageState();
 }
 
-class _BottomNavigationDemoState extends State<BottomNavigationDemo>
+class _MainDemoPageState extends State<MainDemoPage>
     with RestorationMixin {
   final RestorableInt _currentIndex = RestorableInt(0);
 
@@ -79,27 +84,20 @@ class _BottomNavigationDemoState extends State<BottomNavigationDemo>
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.account_circle),
-        label: "Other Demo",
+        label: "Json Demo",
       ),
-      // BottomNavigationBarItem(
-      //   icon: const Icon(Icons.account_circle),
-      //   label: "帐号",
-      // ),
-      // BottomNavigationBarItem(
-      //   icon: const Icon(Icons.alarm_on),
-      //   label: "闹钟",
-      // ),
-      // BottomNavigationBarItem(
-      //   icon: const Icon(Icons.camera_enhance),
-      //   label: "相机",
-      // ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.account_circle),
+        label: "Animation UI ",
+      ),
     ];
 
     const tabWidgets = [
       PerformancePage(),
       InfiniteProcessPageStarter(),
       DataTransferPageStarter(),
-      HomePage(),
+      AnimationSamples(),
+      JsonDemoPage(),
     ];
 
     // if (widget.type == BottomNavigationDemoType.withLabels) {
