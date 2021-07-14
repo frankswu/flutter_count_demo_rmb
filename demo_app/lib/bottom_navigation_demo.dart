@@ -96,8 +96,8 @@ class _MainDemoPageState extends State<MainDemoPage>
       PerformancePage(),
       InfiniteProcessPageStarter(),
       DataTransferPageStarter(),
-      AnimationSamples(),
       JsonDemoPage(),
+      AnimationSamples(),
     ];
 
     // if (widget.type == BottomNavigationDemoType.withLabels) {

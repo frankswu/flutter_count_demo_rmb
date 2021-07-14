@@ -5,25 +5,25 @@
 import 'package:demo_app/main.dart';
 import 'package:flutter/material.dart';
 
-import 'basics/01_animated_container.dart';
-import 'basics/02_page_route_builder.dart';
-import 'basics/03_animation_controller.dart';
-import 'basics/04_tweens.dart';
-import 'basics/05_animated_builder.dart';
-import 'basics/06_custom_tween.dart';
-import 'basics/07_tween_sequence.dart';
-import 'basics/08_fade_transition.dart';
-import 'misc/animated_list.dart';
-import 'misc/animated_positioned.dart';
-import 'misc/animated_switcher.dart';
-import 'misc/card_swipe.dart';
-import 'misc/carousel.dart';
-import 'misc/curved_animation.dart';
-import 'misc/expand_card.dart';
-import 'misc/focus_image.dart';
-import 'misc/hero_animation.dart';
-import 'misc/physics_card_drag.dart';
-import 'misc/repeating_animation.dart';
+// import 'basics/01_animated_container.dart';
+// import 'basics/02_page_route_builder.dart';
+// import 'basics/03_animation_controller.dart';
+// import 'basics/04_tweens.dart';
+// import 'basics/05_animated_builder.dart';
+// import 'basics/06_custom_tween.dart';
+// import 'basics/07_tween_sequence.dart';
+// import 'basics/08_fade_transition.dart';
+// import 'misc/animated_list.dart';
+// import 'misc/animated_positioned.dart';
+// import 'misc/animated_switcher.dart';
+// import 'misc/card_swipe.dart';
+// import 'misc/carousel.dart';
+// import 'misc/curved_animation.dart';
+// import 'misc/expand_card.dart';
+// import 'misc/focus_image.dart';
+// import 'misc/hero_animation.dart';
+// import 'misc/physics_card_drag.dart';
+// import 'misc/repeating_animation.dart';
 
 void main() => runApp(const AnimationSamples());
 
@@ -137,6 +137,7 @@ class AnimationSamples extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // todo routes 必须设置在最外层的 MaterialApp 是有效，而且是唯一的
     return HomePage();
     // return MaterialApp(
     //   title: 'Animation Samples',
@@ -161,6 +162,7 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          // todo 这个 List<Widget> 列表里面具体的子类一样(其实都是ListTile)
           ListTile(title: Text('Basics', style: headerStyle)),
           ...basicDemos.map((d) => DemoTile(demo: d)),
           ListTile(title: Text('Misc', style: headerStyle)),
