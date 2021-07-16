@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:animations/animations.dart';
+import 'package:demo_app/src/infinite_list.dart';
 import 'package:demo_app/src/json_demo.dart';
 import 'package:demo_app/src/animation_samples.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,10 @@ class _MainDemoPageState extends State<MainDemoPage>
         icon: const Icon(Icons.account_circle),
         label: "Animation UI ",
       ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.account_circle),
+        label: "Infinite List",
+      ),
     ];
 
     const tabWidgets = [
@@ -98,6 +103,7 @@ class _MainDemoPageState extends State<MainDemoPage>
       DataTransferPageStarter(),
       JsonDemoPage(),
       AnimationSamples(),
+      InfiniteListPage(),
     ];
 
     // if (widget.type == BottomNavigationDemoType.withLabels) {
