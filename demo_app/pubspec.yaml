@@ -38,6 +38,12 @@ dependencies:
   built_collection: ^5.0.0
   built_value: ^8.0.0
 
+  # 
+  http: ^0.13.0
+  mockito: ^4.1.1
+  english_words: ^3.1.0  
+
+
   # animation
   cupertino_icons: ^1.0.2
 
@@ -49,6 +55,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   animations: ^1.0.0+5
   flutter_cupertino_localizations: ^1.0.1
+
   # json demo dependency
   build_runner: ^2.0.4
   built_value_generator: ^8.0.0
@@ -99,6 +106,5 @@ flutter:
   assets:
     - assets/demos/
     - assets/
-
 
     

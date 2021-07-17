@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'catalog.dart';
 import 'item_tile.dart';
 
-
+// todo 整体页面需要相应的provider包裹，才能在页面里面使用
 // class MyApp extends StatelessWidget {
 //   const MyApp({Key? key}) : super(key: key);
 

@@ -12,6 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:demo_app/src/autofill.dart';
+import 'package:demo_app/src/form_widgets.dart';
+import 'package:demo_app/src/infinite_list.dart';
+import 'package:demo_app/src/json_demo.dart';
+import 'package:demo_app/src/sign_in_http.dart';
+import 'package:demo_app/src/validation.dart';
 import 'package:demo_app/tab_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +45,16 @@ import 'package:demo_app/src/misc/focus_image.dart';
 import 'package:demo_app/src/misc/hero_animation.dart';
 import 'package:demo_app/src/misc/physics_card_drag.dart';
 import 'package:demo_app/src/misc/repeating_animation.dart';
+
+import 'package:http/http.dart' as http;
+import 'src/autofill.dart';
+import 'src/form_widgets.dart';
+import 'src/http/mock_client.dart';
+import 'src/sign_in_http.dart';
+import 'src/validation.dart';
+
+//  Set up a mock HTTP client.
+final http.Client httpClient = MockClient();
 
 class Demo {
   final String name;
@@ -134,15 +150,69 @@ final miscDemos = [
       builder: (context) => const CurvedAnimationDemo()),
 ];
 
+final httpDemos = [
+  Demo(
+    name: 'Sign in with HTTP',
+    route: '/signin_http',
+    builder: (context) => SignInHttpDemo(
+      httpClient: httpClient,
+    ),
+  ),
+  Demo(
+    name: 'Autofill',
+    route: '/autofill',
+    builder: (context) => const AutofillDemo(),
+  ),
+  Demo(
+    name: 'Form widgets',
+    route: '/form_widgets',
+    builder: (context) => const FormWidgetsDemo(),
+  ),
+  Demo(
+    name: 'Validation',
+    route: '/validation',
+    builder: (context) => const FormValidationDemo(),
+  ),
+];
+
+// JsonDemoPage(),
+final jsonDemos = [
+  Demo(
+    name: 'Json Demo Page',
+    route: '/json_page',
+    builder: (context) => const JsonDemoPage(),
+  ),
+];
+
+final infiniteListDemos = [
+  Demo(
+    name: 'Infinite List Page',
+    route: '/infinite_list_page',
+    builder: (context) => const InfiniteListPage(),
+  ),
+];
+
 final basicDemoRoutes =
     Map.fromEntries(basicDemos.map((d) => MapEntry(d.route, d.builder)));
 
 final miscDemoRoutes =
     Map.fromEntries(miscDemos.map((d) => MapEntry(d.route, d.builder)));
 
+final httpDemoRoutes =
+    Map.fromEntries(httpDemos.map((e) => MapEntry(e.route, e.builder)));
+
+final jsonDemoRoutes =
+    Map.fromEntries(jsonDemos.map((e) => MapEntry(e.route, e.builder)));
+
+final listDemoRoutes =
+    Map.fromEntries(infiniteListDemos.map((e) => MapEntry(e.route, e.builder)));
+
 final allRoutes = <String, WidgetBuilder>{
   ...basicDemoRoutes,
   ...miscDemoRoutes,
+  ...httpDemoRoutes,
+  ...jsonDemoRoutes,
+  ...listDemoRoutes,
 };
 
 void main() {

@@ -8,20 +8,15 @@ import 'package:demo_app/src/json_demo.dart';
 import 'package:demo_app/src/animation_samples.dart';
 import 'package:flutter/material.dart';
 
-
 import 'data_transfer_page.dart';
 import 'infinite_process_page.dart';
 import 'main.dart';
 import 'performance_page.dart';
-// import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-// import 'package:gallery/demos/material/material_demo_types.dart';
 
 enum BottomNavigationDemoType {
   withLabels,
   withoutLabels,
 }
-
-
 
 class MainDemoPage extends StatefulWidget {
   const MainDemoPage({
@@ -37,8 +32,7 @@ class MainDemoPage extends StatefulWidget {
   _MainDemoPageState createState() => _MainDemoPageState();
 }
 
-class _MainDemoPageState extends State<MainDemoPage>
-    with RestorationMixin {
+class _MainDemoPageState extends State<MainDemoPage> with RestorationMixin {
   final RestorableInt _currentIndex = RestorableInt(0);
 
   @override
@@ -85,25 +79,25 @@ class _MainDemoPageState extends State<MainDemoPage>
       ),
       BottomNavigationBarItem(
         icon: const Icon(Icons.account_circle),
-        label: "Json Demo",
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.account_circle),
         label: "Animation UI ",
       ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.account_circle),
-        label: "Infinite List",
-      ),
+      // BottomNavigationBarItem(
+      //   icon: const Icon(Icons.account_circle),
+      //   label: "Json Demo",
+      // ),
+      // BottomNavigationBarItem(
+      //   icon: const Icon(Icons.account_circle),
+      //   label: "Infinite List",
+      // ),
     ];
 
     const tabWidgets = [
       PerformancePage(),
       InfiniteProcessPageStarter(),
       DataTransferPageStarter(),
-      JsonDemoPage(),
       AnimationSamples(),
-      InfiniteListPage(),
+      // JsonDemoPage(),
+      // InfiniteListPage(),
     ];
 
     // if (widget.type == BottomNavigationDemoType.withLabels) {
