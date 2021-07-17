@@ -51,10 +51,7 @@ class FlutterBlocApp extends StatelessWidget {
           title: title,
           theme: theme,
           home: BlocProvider(
-              create: (_) => CountCubit(),
-              child: BlocBuilder<CountCubit, int>(builder: (_, theme) {
-                return HomePage(title: title);
-              })),
+              create: (_) => CountCubit(), child: HomePage(title: title)),
         );
       }),
     );
@@ -127,9 +124,15 @@ class HomePage extends StatelessWidget {
 class CountCubit extends Cubit<int> {
   CountCubit() : super(0);
 
-  void increment() => emit(state + 1);
+  void increment() {
+    print('increment.count=$state');
+    emit(state + 1);
+  }
 
-  void decrement() => emit(state - 1);
+  void decrement() {
+    print('decrement.count=$state');
+    emit(state - 1);
+  }
 }
 
 /**
@@ -154,6 +157,7 @@ class ThemeCubit extends Cubit<ThemeData> {
 
   /// Toggles the current brightness between light and dark.
   void toggleTheme() {
+    print("toggleThem.cur.state=${state.brightness}");
     emit(state.brightness == Brightness.dark ? _lightTheme : _darkTheme);
   }
 }
