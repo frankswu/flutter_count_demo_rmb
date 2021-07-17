@@ -18,14 +18,9 @@ import 'package:demo_app/src/infinite_list.dart';
 import 'package:demo_app/src/json_demo.dart';
 import 'package:demo_app/src/sign_in_http.dart';
 import 'package:demo_app/src/validation.dart';
-import 'package:demo_app/tab_pages.dart';
 import 'package:flutter/material.dart';
-
-import 'data_transfer_page.dart';
-import 'infinite_process_page.dart';
-import 'performance_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bottom_navigation_demo.dart';
-
 import 'package:demo_app/src/basics/01_animated_container.dart';
 import 'package:demo_app/src/basics/02_page_route_builder.dart';
 import 'package:demo_app/src/basics/03_animation_controller.dart';
@@ -215,7 +210,30 @@ final allRoutes = <String, WidgetBuilder>{
   ...listDemoRoutes,
 };
 
+class MyBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object? event) {
+    print(event);
+    super.onEvent(bloc, event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print(transition);
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
+  }
+}
+
 void main() {
+
+  Bloc.observer = MyBlocObserver();
+
   runApp(
     MaterialApp(
       routes: allRoutes,

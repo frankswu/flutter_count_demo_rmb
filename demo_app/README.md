@@ -14,7 +14,12 @@ Anamation & Isloate & JsonExample & [Infinite List ] & [Provider Shopper] & [For
 
 ## TODO List
 -----
-    1 使用 bloc + reactive 改写
+    1 使用 bloc + reactive 改写 
+        结合 Isolate 异步编程
+        如何改写FutureBuilder --> bloc + reactive
+        ChangeNotifierProvider -->  bloc + reactive
+        改造AnimationSamples -->  bloc + reactive
+        改造Selector -->  bloc + reactive
     2 使用 Router 框架 改写
     3 json 框架替换
 

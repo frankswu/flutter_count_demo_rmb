@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
+
+  flutter_bloc: ^7.0.1 # todo 最新版本7.0.1 使用方式和基类有调整
+
   # https://flutter.dev/docs/development/accessibility-and-localization/internationalization`
   flutter_localizations:
     sdk: flutter
