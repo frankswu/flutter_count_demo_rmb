@@ -66,8 +66,8 @@ class Demo {
 final basicDemos = [
   Demo(
       name: 'AnimatedContainer',
-      route: AnimatedContainerDemo.routeName,
-      builder: (context) => const AnimatedContainerDemo()),
+      route: AnimatedContainerDemo2.routeName,
+      builder: (context) => AnimatedContainerDemo2()),
   Demo(
       name: 'PageRouteBuilder',
       route: PageRouteBuilderDemo.routeName,
@@ -210,6 +210,10 @@ final allRoutes = <String, WidgetBuilder>{
   ...listDemoRoutes,
 };
 
+///
+///   从继承 BlocDelegate 到继承 BlocObserver
+///   Custom [BlocObserver] which observes all bloc and cubit instances.
+///
 class MyBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
@@ -231,7 +235,7 @@ class MyBlocObserver extends BlocObserver {
 }
 
 void main() {
-
+  // from 4.0 to 7.0 change
   Bloc.observer = MyBlocObserver();
 
   runApp(

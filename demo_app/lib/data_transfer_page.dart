@@ -91,12 +91,16 @@ class DataTransferPage extends StatelessWidget {
 }
 
 class DataTransferIsolateController extends ChangeNotifier {
+  // 类线程
   Isolate? _isolate;
+  // 
   late ReceivePort _incomingReceivePort;
   late SendPort _outgoingSendPort;
 
   final currentProgress = <String>[];
+
   int runningTest = 0;
+
   Stopwatch _timer = Stopwatch();
   double progressPercent = 0;
 
@@ -235,6 +239,7 @@ class RunningList extends StatelessWidget {
 }
 
 Future<void> _secondIsolateEntryPoint(SendPort sendPort) async {
+  print("_secondIsolateEntryPoint");
   var receivePort = ReceivePort();
   sendPort.send(receivePort.sendPort);
   var length = 1;

@@ -18,8 +18,6 @@ enum BottomNavigationDemoType {
   withoutLabels,
 }
 
-
-
 class MainDemoPage extends StatefulWidget {
   const MainDemoPage({
     Key? key,
@@ -34,6 +32,8 @@ class MainDemoPage extends StatefulWidget {
   _MainDemoPageState createState() => _MainDemoPageState();
 }
 
+//https://api.flutter.dev/flutter/widgets/RestorationMixin-mixin.html
+//Manages the restoration data for a State object of a StatefulWidget.
 class _MainDemoPageState extends State<MainDemoPage> with RestorationMixin {
   final RestorableInt _currentIndex = RestorableInt(0);
 
@@ -148,42 +148,42 @@ class _MainDemoPageState extends State<MainDemoPage> with RestorationMixin {
   }
 }
 
-class _NavigationDestinationView extends StatelessWidget {
-  const _NavigationDestinationView({Key? key, required this.item})
-      : super(key: key);
+// class _NavigationDestinationView extends StatelessWidget {
+//   const _NavigationDestinationView({Key? key, required this.item})
+//       : super(key: key);
 
-  final BottomNavigationBarItem item;
+//   final BottomNavigationBarItem item;
 
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ExcludeSemantics(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  'assets/demos/bottom_navigation_background.png',
-                ),
-              ),
-            ),
-          ),
-        ),
-        Center(
-          child: IconTheme(
-            data: const IconThemeData(
-              color: Colors.white,
-              size: 80,
-            ),
-            child: Semantics(
-              label: "“${item.label}”标签页的占位符",
-              child: item.icon,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       children: [
+//         ExcludeSemantics(
+//           child: Center(
+//             child: Padding(
+//               padding: const EdgeInsets.all(16),
+//               child: ClipRRect(
+//                 borderRadius: BorderRadius.circular(8),
+//                 child: Image.asset(
+//                   'assets/demos/bottom_navigation_background.png',
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
+//         Center(
+//           child: IconTheme(
+//             data: const IconThemeData(
+//               color: Colors.white,
+//               size: 80,
+//             ),
+//             child: Semantics(
+//               label: "“${item.label}”标签页的占位符",
+//               child: item.icon,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
