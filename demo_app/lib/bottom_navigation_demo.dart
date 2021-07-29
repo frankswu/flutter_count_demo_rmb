@@ -136,15 +136,19 @@ class _MainDemoPageState extends State<MainDemoPage> with RestorationMixin {
         selectedFontSize: textTheme.caption!.fontSize!,
         unselectedFontSize: textTheme.caption!.fontSize!,
         onTap: (index) {
-          setState(() {
-            _currentIndex.value = index;
-          });
+          resetCurIndex(index);
         },
         selectedItemColor: colorScheme.onPrimary,
         unselectedItemColor: colorScheme.onPrimary.withOpacity(0.38),
         backgroundColor: colorScheme.primary,
       ),
     );
+  }
+
+  void resetCurIndex(int index) {
+    setState(() {
+      _currentIndex.value = index;
+    });
   }
 }
 

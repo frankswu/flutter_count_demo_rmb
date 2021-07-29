@@ -172,7 +172,9 @@ class HomePage extends StatelessWidget {
           ListTile(title: Text('Json Demo', style: headerStyle)),
           ...jsonDemos.map((e) => DemoTile(demo: e)),
           ListTile(title: Text('List Demo', style: headerStyle)),
-          ...infiniteListDemos.map((e) => DemoTile(demo: e))
+          ...infiniteListDemos.map((e) => DemoTile(demo: e)),
+          ListTile(title: Text('Count Demo', style: headerStyle)),
+          ...countDemos.map((e) => DemoTile(demo: e)),
         ],
       ),
     );

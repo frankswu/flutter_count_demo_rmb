@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:demo_app/src/autofill.dart';
+import 'package:demo_app/src/count/count_demo.dart';
 import 'package:demo_app/src/form_widgets.dart';
 import 'package:demo_app/src/infinite_list.dart';
 import 'package:demo_app/src/json_demo.dart';
@@ -179,6 +180,15 @@ final jsonDemos = [
   ),
 ];
 
+final countDemos = [
+  Demo(
+      name: 'Count Demo',
+      route: '/demo/count',
+      builder: (context) => const CountDemo(
+            title: 'Count Demo',
+          )),
+];
+
 final infiniteListDemos = [
   Demo(
     name: 'Infinite List Page',
@@ -202,12 +212,17 @@ final jsonDemoRoutes =
 final listDemoRoutes =
     Map.fromEntries(infiniteListDemos.map((e) => MapEntry(e.route, e.builder)));
 
+final countDemoRoutes =
+    Map.fromEntries(countDemos.map((e) => MapEntry(e.route, e.builder)));
+
+
 final allRoutes = <String, WidgetBuilder>{
   ...basicDemoRoutes,
   ...miscDemoRoutes,
   ...httpDemoRoutes,
   ...jsonDemoRoutes,
   ...listDemoRoutes,
+  ...countDemoRoutes,
 };
 
 ///
