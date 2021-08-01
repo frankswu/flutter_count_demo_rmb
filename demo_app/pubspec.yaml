@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
+  # router framework
+  fluro: ^2.0.3
+  
 
   flutter_bloc: ^7.0.1 # todo 最新版本7.0.1 使用方式和基类有调整
 

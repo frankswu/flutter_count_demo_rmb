@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'data_transfer_page.dart';
 import 'infinite_process_page.dart';
-import 'main.dart';
+import '../main.dart';
 import 'performance_page.dart';
 
 enum BottomNavigationDemoType {

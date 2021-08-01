@@ -164,7 +164,7 @@ class HomePage extends StatelessWidget {
         children: [
           // todo 这个 List<Widget> 列表里面具体的子类一样(其实都是ListTile)
           ListTile(title: Text('Basics', style: headerStyle)),
-          ...basicDemos.map((d) => DemoTile(demo: d)),
+          ...basicDemos.map((d) => DemoTile2(demo: d)),
           ListTile(title: Text('Misc', style: headerStyle)),
           ...miscDemos.map((d) => DemoTile(demo: d)),
           ListTile(title: Text('Http Demo', style: headerStyle)),
@@ -197,3 +197,23 @@ class DemoTile extends StatelessWidget {
     );
   }
 }
+
+
+class DemoTile2 extends StatelessWidget {
+  final Demo demo;
+
+  const DemoTile2({required this.demo, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(demo.name),
+      onTap: () {
+        print("click router=${demo.route}");
+        Navigator.push(context, MaterialPageRoute(builder: demo.builder));
+        // Navigator.pushNamed(context, demo.route);
+      },
+    );
+  }
+}
+

@@ -9,6 +9,7 @@ This project is a starting point for a Flutter application.
 A few resources to get you started if this is your first Flutter project:
 
 - [Sample: Sample Flutter app](https://flutter.github.io/samples/#?type=sample)
+[Sample source code](https://github.com/flutter/samples)
 把Sample 下面的多个Demo 合并成一个Demo，
 Anamation & Isloate & JsonExample & [Infinite List ] & [Provider Shopper] & [Form App],
 

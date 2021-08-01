@@ -21,7 +21,7 @@ import 'package:demo_app/src/sign_in_http.dart';
 import 'package:demo_app/src/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bottom_navigation_demo.dart';
+import 'components/bottom_navigation_demo.dart';
 import 'package:demo_app/src/basics/01_animated_container.dart';
 import 'package:demo_app/src/basics/02_page_route_builder.dart';
 import 'package:demo_app/src/basics/03_animation_controller.dart';

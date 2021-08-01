@@ -14,7 +14,7 @@ import 'package:demo_app/json_serializable/serializable_complex_object.dart';
 import 'package:demo_app/json_serializable/serializable_simple_object.dart';
 import 'package:demo_app/json_strings.dart';
 import 'package:demo_app/utils.dart';
-import 'package:demo_app/widgets.dart';
+import 'package:demo_app/components/widgets.dart';
 
 class BasicsPage extends StatelessWidget {
   const BasicsPage({Key? key}) : super(key: key);
