@@ -4,6 +4,7 @@
 
 import 'dart:math';
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,7 @@ class Style {
   }
 }
 
-class AnimatedContainerDemo2 extends StatelessWidget {
+class AnimatedContainerDemo2 extends StatelessWidget implements BasePage {
   static String routeName = '/basics/01_animated_container';
 
   const AnimatedContainerDemo2({Key? key}) : super(key: key);
@@ -35,6 +36,15 @@ class AnimatedContainerDemo2 extends StatelessWidget {
     return BlocProvider(
         create: (_) => StyleCubit(), child: InnerAnimatedContainerDemo());
   }
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => AnimatedContainerDemo2();
+
+  @override
+  String get mPageName => 'AnimatedContainer';
+
+  @override
+  String get mPageRoute => routeName;
 }
 
 class InnerAnimatedContainerDemo extends StatelessWidget {

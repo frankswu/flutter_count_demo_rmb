@@ -2,12 +2,21 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
-class PageRouteBuilderDemo extends StatelessWidget {
+class PageRouteBuilderDemo extends StatelessWidget implements BasePage {
   const PageRouteBuilderDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/page_route_builder';
 
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const PageRouteBuilderDemo();
+
+  @override
+  String get mPageName => 'PageRouteBuilder';
+
+  @override
+  String get mPageRoute => routeName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

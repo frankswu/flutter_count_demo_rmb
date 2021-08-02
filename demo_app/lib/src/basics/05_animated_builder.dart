@@ -2,15 +2,30 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
-class AnimatedBuilderDemo extends StatefulWidget {
+class AnimatedBuilderDemo extends StatefulWidget implements BasePage   {
   const AnimatedBuilderDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/animated_builder';
+      // name: 
+      // route: AnimatedBuilderDemo.routeName,
+      // builder: (context) => const AnimatedBuilderDemo()),
 
   @override
   _AnimatedBuilderDemoState createState() => _AnimatedBuilderDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const AnimatedBuilderDemo();
+
+  @override
+  String get mPageName => 'AnimatedBuilder';
+
+  @override
+  String get mPageRoute => routeName;
 }
+
+
 
 class _AnimatedBuilderDemoState extends State<AnimatedBuilderDemo>
     with SingleTickerProviderStateMixin {

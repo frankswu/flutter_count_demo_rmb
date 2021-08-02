@@ -17,13 +17,15 @@ void main() {
   // var arguments = {'argA': B(), 'argB': C(), 'argC': D()};
   // var arguments = {'argA': 'hello', 'argB': 42}; // Map<String, Object>
   arguments.forEach((key, value) {
-    log("$key=${value.doB()} next ");
-    log("$key=${value.doA()} next ");
+    log("$key=${value.mName} next ");
+    log("${value.doA()} next ");
   });
   log("hello, Frankswu");
 }
 
 abstract class A {
+
+  String get mName;
   void doA() {
     log("A.doA");
   }
@@ -34,6 +36,9 @@ class B extends A {
   void doA() {
     log("b.doA()");
   }
+
+  @override
+  String get mName => 'class B';
 }
 
 class C implements A {
@@ -41,6 +46,9 @@ class C implements A {
   void doA() {
     log("class C doA method");
   }
+
+  @override
+  String get mName => 'Class C';
 }
 
 class D with A {
@@ -48,4 +56,7 @@ class D with A {
   void doA() {
     log("class D.doA() ");
   }
+
+  @override
+  String get mName => 'class D';
 }

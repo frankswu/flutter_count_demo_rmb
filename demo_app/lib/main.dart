@@ -99,6 +99,17 @@ final basicDemos = [
       builder: (context) => const FadeTransitionDemo()),
 ];
 
+List<dynamic> basicDemosPages = [
+  AnimatedContainerDemo2(),
+  PageRouteBuilderDemo(),
+  AnimationControllerDemo(),
+  TweenDemo(),
+  AnimatedBuilderDemo(),
+  CustomTweenDemo(),
+  TweenSequenceDemo(),
+  FadeTransitionDemo()
+];
+
 final miscDemos = [
   Demo(
       name: 'Expandable Card',
@@ -196,9 +207,9 @@ final infiniteListDemos = [
     builder: (context) => const InfiniteListPage(),
   ),
 ];
-
-final basicDemoRoutes =
-    Map.fromEntries(basicDemos.map((d) => MapEntry(d.route, d.builder)));
+// 使用抽象类方法统一 Router，builder
+final basicDemoRoutes = Map.fromEntries(
+    basicDemosPages.map((d) => MapEntry(d.mPageRoute, d.mPageBuilder)));
 
 final miscDemoRoutes =
     Map.fromEntries(miscDemos.map((d) => MapEntry(d.route, d.builder)));
@@ -214,7 +225,6 @@ final listDemoRoutes =
 
 final countDemoRoutes =
     Map.fromEntries(countDemos.map((e) => MapEntry(e.route, e.builder)));
-
 
 final allRoutes = <String, WidgetBuilder>{
   ...basicDemoRoutes,

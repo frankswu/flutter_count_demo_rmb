@@ -2,14 +2,27 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
-class TweenSequenceDemo extends StatefulWidget {
+class TweenSequenceDemo extends StatefulWidget implements BasePage {
   const TweenSequenceDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/chaining_tweens';
 
+      // name: 
+      // route: TweenSequenceDemo.routeName,
+      // builder: (context) => const TweenSequenceDemo()),
   @override
   _TweenSequenceDemoState createState() => _TweenSequenceDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const TweenSequenceDemo();
+
+  @override
+  String get mPageName => 'Tween Sequences';
+
+  @override
+  String get mPageRoute => routeName;
 }
 
 class _TweenSequenceDemoState extends State<TweenSequenceDemo>

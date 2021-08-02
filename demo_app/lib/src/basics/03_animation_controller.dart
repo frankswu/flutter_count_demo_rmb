@@ -2,15 +2,29 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
-class AnimationControllerDemo extends StatefulWidget {
+class AnimationControllerDemo extends StatefulWidget implements BasePage {
   const AnimationControllerDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/animation_controller';
+
+      // name: 
+      // route: AnimationControllerDemo.routeName,
+      // builder: (context) => const AnimationControllerDemo()),
 
   @override
   _AnimationControllerDemoState createState() =>
       _AnimationControllerDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const AnimationControllerDemo();
+
+  @override
+  String get mPageName => 'Animation Controller';
+
+  @override
+  String get mPageRoute => routeName;
 }
 
 class _AnimationControllerDemoState extends State<AnimationControllerDemo>

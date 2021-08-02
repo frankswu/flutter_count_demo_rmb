@@ -2,15 +2,26 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
-class TweenDemo extends StatefulWidget {
+class TweenDemo extends StatefulWidget implements BasePage {
   const TweenDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/tweens';
 
   @override
   _TweenDemoState createState() => _TweenDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const TweenDemo();
+
+  @override
+  String get mPageName =>  'Tweens';
+
+  @override
+  String get mPageRoute => routeName;
 }
+
 
 class _TweenDemoState extends State<TweenDemo>
     with SingleTickerProviderStateMixin {

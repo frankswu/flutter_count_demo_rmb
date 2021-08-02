@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
 class TypewriterTween extends Tween<String> {
@@ -15,12 +16,21 @@ class TypewriterTween extends Tween<String> {
   }
 }
 
-class CustomTweenDemo extends StatefulWidget {
+class CustomTweenDemo extends StatefulWidget implements BasePage {
   const CustomTweenDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/custom_tweens';
 
   @override
   _CustomTweenDemoState createState() => _CustomTweenDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const CustomTweenDemo();
+
+  @override
+  String get mPageName => 'Custom Tween';
+
+  @override
+  String get mPageRoute => routeName;
 }
 
 class _CustomTweenDemoState extends State<CustomTweenDemo>

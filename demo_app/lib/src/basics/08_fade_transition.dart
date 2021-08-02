@@ -2,16 +2,30 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
 // Refer to the AnimatedWidget docs here - https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html
 // for examples of other common animated widgets.
-class FadeTransitionDemo extends StatefulWidget {
+class FadeTransitionDemo extends StatefulWidget  implements BasePage{
   const FadeTransitionDemo({Key? key}) : super(key: key);
   static const String routeName = '/basics/fade_transition';
 
+      // name: 
+      // route: FadeTransitionDemo.routeName,
+      // builder: (context) => const FadeTransitionDemo()),
+
   @override
   _FadeTransitionDemoState createState() => _FadeTransitionDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const FadeTransitionDemo();
+
+  @override
+  String get mPageName => 'Fade Transition';
+
+  @override
+  String get mPageRoute => routeName;
 }
 
 class _FadeTransitionDemoState extends State<FadeTransitionDemo>
