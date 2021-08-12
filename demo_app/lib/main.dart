@@ -13,12 +13,15 @@
 // limitations under the License.
 
 import 'package:demo_app/src/autofill.dart';
+import 'package:demo_app/src/config/application.dart';
+import 'package:demo_app/src/config/routes.dart';
 import 'package:demo_app/src/count/count_demo.dart';
 import 'package:demo_app/src/form_widgets.dart';
 import 'package:demo_app/src/infinite_list.dart';
 import 'package:demo_app/src/json_demo.dart';
 import 'package:demo_app/src/sign_in_http.dart';
 import 'package:demo_app/src/validation.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components/bottom_navigation_demo.dart';
@@ -263,12 +266,21 @@ void main() {
   // from 4.0 to 7.0 change
   Bloc.observer = MyBlocObserver();
 
+    // https://pub.dev/packages/fluro
+    // 注册Router
+    final routes = FluroRouter();
+    // 自定义的Router初始化方法
+    Routes.configureRoutes(routes);
+    Application.router = routes;
+
   runApp(
     MaterialApp(
-      routes: allRoutes,
+      // routes: allRoutes,
       home: MainDemoPage(
         restorationId: 'Bottom Navigation',
       ),
+      onGenerateRoute: Application.router.generator,
+      debugShowCheckedModeBanner: true,
     ),
   );
 }

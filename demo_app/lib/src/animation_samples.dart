@@ -191,7 +191,7 @@ class DemoTile extends StatelessWidget {
     return ListTile(
       title: Text(demo.name),
       onTap: () {
-        print("click router=${demo.route}");
+        print("click router.Navigator.pushNamed=${demo.route}");
         Navigator.pushNamed(context, demo.route);
       },
     );
@@ -209,7 +209,7 @@ class DemoTile2 extends StatelessWidget {
     return ListTile(
       title: Text(demo.name),
       onTap: () {
-        print("click router=${demo.route}");
+        print("click router.Navigator.push=${demo.route}");
         Navigator.push(context, MaterialPageRoute(builder: demo.builder));
         // Navigator.pushNamed(context, demo.route);
       },

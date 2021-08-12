@@ -52,9 +52,7 @@ class FlutterBlocApp extends StatelessWidget {
           theme: theme,
           home: BlocProvider(
               create: (_) => CountCubit(),
-              child: BlocBuilder<CountCubit, int>(builder: (_, theme) {
-                return HomePage(title: title);
-              })),
+              child: HomePage(title: title)),
         );
       }),
     );
@@ -81,6 +79,7 @@ class HomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: BlocBuilder<CountCubit, int>(builder: (_, count) {
+        print("blocBuild.count=$count");
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +90,7 @@ class HomePage extends StatelessWidget {
               Text(
                 '$count',
                 style: Theme.of(context).textTheme.display1,
-              ),
+                 ),
             ],
           ),
         );
@@ -125,9 +124,13 @@ class HomePage extends StatelessWidget {
 }
 
 class CountCubit extends Cubit<int> {
-  CountCubit() : super(0);
+        CountCubit() : super(0);
 
-  void increment() => emit(state + 1);
+  void increment() {
+    print("increment: $state to ${state+1}");
+    emit(state + 1);
+  }
+
 
   void decrement() => emit(state - 1);
 }

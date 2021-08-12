@@ -3,9 +3,12 @@
 // found in the LICENSE file.
 
 import 'package:animations/animations.dart';
+import 'package:demo_app/src/config/application.dart';
+import 'package:demo_app/src/config/routes.dart';
 import 'package:demo_app/src/infinite_list.dart';
 import 'package:demo_app/src/json_demo.dart';
 import 'package:demo_app/src/animation_samples.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import 'data_transfer_page.dart';
@@ -40,6 +43,7 @@ class _MainDemoPageState extends State<MainDemoPage> with RestorationMixin {
   @override
   String get restorationId => widget.restorationId;
 
+  
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
     registerForRestoration(_currentIndex, 'bottom_navigation_tab_index');

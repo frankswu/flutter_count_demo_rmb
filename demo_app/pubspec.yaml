@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
-  # router framework
+  # router framework  https://github.com/lukepighetti/fluro
   fluro: ^2.0.3
   
 
