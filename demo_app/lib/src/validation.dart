@@ -2,15 +2,25 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart' as english_words;
 
-class FormValidationDemo extends StatefulWidget {
+class FormValidationDemo extends StatefulWidget implements BasePage {
   const FormValidationDemo({Key? key}) : super(key: key);
 
   @override
   _FormValidationDemoState createState() => _FormValidationDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const FormValidationDemo();
+
+  @override
+  String get mPageName => 'Validation';
+
+  @override
+  String get mPageRoute => '/validation';
 }
 
 class _FormValidationDemoState extends State<FormValidationDemo> {

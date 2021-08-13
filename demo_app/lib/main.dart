@@ -211,8 +211,8 @@ final infiniteListDemos = [
   ),
 ];
 // 使用抽象类方法统一 Router，builder
-final basicDemoRoutes = Map.fromEntries(
-    basicDemosPages.map((d) => MapEntry(d.mPageRoute, d.mPageBuilder)));
+// final basicDemoRoutes = Map.fromEntries(
+//     basicDemosPages.map((d) => MapEntry(d.mPageRoute, d.mPageBuilder)));
 
 final miscDemoRoutes =
     Map.fromEntries(miscDemos.map((d) => MapEntry(d.route, d.builder)));
@@ -229,14 +229,14 @@ final listDemoRoutes =
 final countDemoRoutes =
     Map.fromEntries(countDemos.map((e) => MapEntry(e.route, e.builder)));
 
-final allRoutes = <String, WidgetBuilder>{
-  ...basicDemoRoutes,
-  ...miscDemoRoutes,
-  ...httpDemoRoutes,
-  ...jsonDemoRoutes,
-  ...listDemoRoutes,
-  ...countDemoRoutes,
-};
+// final allRoutes = <String, WidgetBuilder>{
+//   ...basicDemoRoutes,
+//   ...miscDemoRoutes,
+//   ...httpDemoRoutes,
+//   ...jsonDemoRoutes,
+//   ...listDemoRoutes,
+//   ...countDemoRoutes,
+// };
 
 ///
 ///   从继承 BlocDelegate 到继承 BlocObserver

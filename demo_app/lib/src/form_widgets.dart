@@ -2,14 +2,24 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
-class FormWidgetsDemo extends StatefulWidget {
+class FormWidgetsDemo extends StatefulWidget implements BasePage {
   const FormWidgetsDemo({Key? key}) : super(key: key);
 
   @override
   _FormWidgetsDemoState createState() => _FormWidgetsDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const FormWidgetsDemo();
+
+  @override
+  String get mPageName => 'FormWidgets';
+
+  @override
+  String get mPageRoute => '/form_widgets';
 }
 
 class _FormWidgetsDemoState extends State<FormWidgetsDemo> {

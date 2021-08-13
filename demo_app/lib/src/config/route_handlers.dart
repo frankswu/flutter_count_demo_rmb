@@ -11,6 +11,7 @@
 // import '../components/home/home_component.dart';
 import 'dart:developer';
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:demo_app/components/bottom_navigation_demo.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluro/fluro.dart';
@@ -19,8 +20,11 @@ import 'package:flutter/material.dart';
 var rootHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
   // return HomeComponent();
-    return MainDemoPage(restorationId: ' Route Main Page');
+  return MainDemoPage(restorationId: ' Route Main Page');
 });
+
+var normalRouteHandle = Handler(
+    handlerFunc: (BuildContext? context, Map<String, List<Object>> params) {});
 
 var demoRouteHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
@@ -87,4 +91,16 @@ var deepLinkHandler = Handler(
 
 main(List<String> args) {
   log("Hello，Frankswu");
+}
+
+abstract class NormalRouterHandle<T extends BasePage> extends Handler {
+  // 
+  NormalRouterHandle(T page) : super(handlerFunc: (BuildContext? context, Map<String, List<String>> params){
+    log("router.page${page.mPageName}");
+    //return page.mPageBuilder.call();
+  });
+
+
+
+
 }

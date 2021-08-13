@@ -2,15 +2,25 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:demo_app/base/base_page.dart';
 import 'package:flutter/material.dart';
 
 // Demonstrates how to use autofill hints. The full list of hints is here:
 // https://github.com/flutter/engine/blob/master/lib/web_ui/lib/src/engine/text_editing/autofill_hint.dart
-class AutofillDemo extends StatefulWidget {
+class AutofillDemo extends StatefulWidget implements BasePage {
   const AutofillDemo({Key? key}) : super(key: key);
 
   @override
   _AutofillDemoState createState() => _AutofillDemoState();
+
+  @override
+  WidgetBuilder get mPageBuilder => (context) => const AutofillDemo();
+
+  @override
+  String get mPageName => 'AutoFill';
+
+  @override
+  String get mPageRoute => '/autofill';
 }
 
 class _AutofillDemoState extends State<AutofillDemo> {

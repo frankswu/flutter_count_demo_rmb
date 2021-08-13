@@ -17,6 +17,31 @@ class Routes {
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
 
+// final httpDemos = [
+//   Demo(
+//     name: 'Sign in with HTTP',
+//     route: '/signin_http',
+//     builder: (context) => SignInHttpDemo(
+//       httpClient: httpClient,
+//     ),
+//   ),
+//   Demo(
+//     name: 'Autofill',
+//     route: '/autofill',
+//     builder: (context) => const AutofillDemo(),
+//   ),
+//   Demo(
+//     name: 'Form widgets',
+//     route: '/form_widgets',
+//     builder: (context) => const FormWidgetsDemo(),
+//   ),
+//   Demo(
+//     name: 'Validation',
+//     route: '/validation',
+//     builder: (context) => const FormValidationDemo(),
+//   ),
+// ];
+
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
