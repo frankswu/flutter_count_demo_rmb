@@ -6,6 +6,10 @@
  * Copyright (c) 2019 Yakka, LLC. All rights reserved.
  * See LICENSE for distribution and usage details.
  */
+import 'package:demo_app/base/base_page.dart';
+import 'package:demo_app/src/autofill.dart';
+import 'package:demo_app/src/form_widgets.dart';
+import 'package:demo_app/src/validation.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import './route_handlers.dart';
@@ -17,30 +21,9 @@ class Routes {
   static String demoFunc = "/demo/func";
   static String deepLink = "/message";
 
-// final httpDemos = [
-//   Demo(
-//     name: 'Sign in with HTTP',
-//     route: '/signin_http',
-//     builder: (context) => SignInHttpDemo(
-//       httpClient: httpClient,
-//     ),
-//   ),
-//   Demo(
-//     name: 'Autofill',
-//     route: '/autofill',
-//     builder: (context) => const AutofillDemo(),
-//   ),
-//   Demo(
-//     name: 'Form widgets',
-//     route: '/form_widgets',
-//     builder: (context) => const FormWidgetsDemo(),
-//   ),
-//   Demo(
-//     name: 'Validation',
-//     route: '/validation',
-//     builder: (context) => const FormValidationDemo(),
-//   ),
-// ];
+  static var formWidgetsDemo = NormalRouterHandle(FormWidgetsDemo());
+
+  static List<BasePage> listWidgets = [AutofillDemo(), FormWidgetsDemo()];
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -48,6 +31,13 @@ class Routes {
       print("ROUTE WAS NOT FOUND !!!");
       return;
     });
+    
+    listWidgets.forEach((page) {
+      router.define(page.mPageRoute, handler: NormalRouterHandle(page));
+    });
+    router.define('/validation', handler: formValidationDemo);
+
+
     router.define(root, handler: rootHandler);
     router.define(demoSimple, handler: demoRouteHandler);
     router.define(demoSimpleFixedTrans,
